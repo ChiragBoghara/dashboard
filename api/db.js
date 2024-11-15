@@ -1,12 +1,22 @@
 const { Pool } = require("pg");
 
+const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD } = process.env;
+
 const pool = new Pool({
-  user: "postgres",
-  password: "admin",
-  host: "localhost",
-  port: 5432, // default Postgres port
-  database: "MyDashboard",
+  host: PGHOST,
+  database: PGDATABASE,
+  username: PGUSER,
+  password: PGPASSWORD,
+  port: 5432,
+  ssl: {
+    require: true,
+  },
 });
+
+pool.connect((err) => {
+  if (err) throw err
+  console.log("Connect to PostgreSQL successfully!")
+})
 
 module.exports = {
   query: (text, params) => pool.query(text, params),

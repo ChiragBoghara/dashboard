@@ -16,10 +16,9 @@ const {
 
 const PORT = process.env.PORT || 3001;
 
-// Allow requests from http://localhost:3000
 const corsOptions = {
-  origin: "http://localhost:3000", // You can also use '*' for any origin, but it's more secure to specify allowed origins.
-  methods: ["GET", "POST"], // Allow specific methods
+  origin: "http://localhost:3000",
+  methods: ["GET", "POST"],
   credentials: true,
 };
 
